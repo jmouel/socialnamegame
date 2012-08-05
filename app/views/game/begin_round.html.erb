@@ -1,11 +1,11 @@
 <div class="photos btn-group row-fluid" data-toggle="buttons-radio">
   <% @photos.each do |p| %>
-  <button class="btn span2"><img src="<%= p %>" /></button>
+  <button class="btn span2" data-action="select-photo"><img src="<%= p %>" /></button>
   <% end %>
 </div>
 
 <div class="names btn-group row-fluid" data-toggle="buttons-radio">
   <% @names.each do |n| %>
-  <button class="btn span2"><%= n %></button>
+  <button class="btn span2" data-action="select-name"><%= n %></button>
   <% end %>
 </div>
