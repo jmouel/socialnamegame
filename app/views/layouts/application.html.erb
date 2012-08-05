@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>Social Name Game</title>
+  <link rel="stylesheet" href="/assets/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/assets/bootstrap-responsive.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<a href="https://github.com/jmouel/socialnamegame"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

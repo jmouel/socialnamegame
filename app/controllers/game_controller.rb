@@ -8,12 +8,12 @@ class GameController < ApplicationController
   # Initialize a new round and start its timer. Return names, photos for the round.
   def begin_round
     people = Person.all
-    @needle = people[rand(people.size)]
-    all_except_needle = people.collect { |p| p unless p.name == @needle.name }.compact.sort { rand }
+    needle = people[rand(people.size)]
+    all_except_needle = people.collect { |p| p unless p.name == needle.name }.compact.shuffle
     haystack = all_except_needle.sample(4)
 
-    @names = []
-    @photos = []
+    @names = [ needle.name ]
+    @photos = [ needle.photo_url ]
 
     haystack.each do |h|
       @names.push h.name
@@ -25,14 +25,18 @@ class GameController < ApplicationController
       # Remove the name corresponding to the photo to make sure we don't end up with > 1 correct pair.
       all_except_needle.delete(photo_person)
     end
+    @names.shuffle!
+    @photos.shuffle!
   end
 
   # Evaluate user's answer, update score.
   # Do not allow multiple submissions within a round.
   # Do not allow submissions outside of a game.
-  def submit_match
+  def eval_answer
+    name = params[:name]
+    photo = params[:photo]
 
-    render json: {}
+    correct = Person.where(name: name, photo_url: photo).count() == 1
+    render json: { correct: correct }
   end
-
 end

@@ -1,0 +1,25 @@
+@mixin box-shadow($h, $v, $radius, $spread, $color)
+  -webkit-box-shadow: $h $v $radius $spread $color
+  -moz-box-shadow: $h $v $radius $spread $color
+  box-shadow: $h $v $radius $spread $color
+
+.btn
+  padding: 10px
+
+.btn.active
+  @include box-shadow(1px, 1px, 24px, 0, #62C462)
+  font-color: #62C462
+  font-weight: bold
+
+.photos
+  margin-left: 4px
+  margin-top: 20px
+  margin-bottom: 20px
+
+  img
+    width: 148px
+
+.names
+
+  .btn
+    font-size: 18px

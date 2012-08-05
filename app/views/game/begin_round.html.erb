@@ -1,24 +1,11 @@
-<h3>Needle</h3>
-
-<div>
-  <img src="<%= @needle.photo_url %>" />
-</div>
-<div>
-  <%= @needle.name %>
+<div class="photos btn-group row-fluid" data-toggle="buttons-radio">
+  <% @photos.each do |p| %>
+  <button class="btn span2"><img src="<%= p %>" /></button>
+  <% end %>
 </div>
 
-<h3>Names</h3>
-
-<% @names.each do |n| %>
-<div>
-  <%= n %>
+<div class="names btn-group row-fluid" data-toggle="buttons-radio">
+  <% @names.each do |n| %>
+  <button class="btn span2"><%= n %></button>
+  <% end %>
 </div>
-<% end %>
-
-<h3>Photos</h3>
-
-<% @photos.each do |p| %>
-<div>
-  <img src="<%= p %>" />
-</div>
-<% end %>
