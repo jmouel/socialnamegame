@@ -1,6 +1,10 @@
 jQuery(document).ready ($) ->
   $('.btn[data-action="select-photo"]').click (e) =>
-    @selectedPhoto = $(e.target).closest('img').attr('src')
+    target = $(e.target).attr('src')
+    if not target?
+      target = $(e.target).find('img').attr('src')
+
+    @selectedPhoto = target
     checkAnswer()
 
   $('.btn[data-action="select-name"]').click (e) =>

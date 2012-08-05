@@ -6,9 +6,9 @@ Person.create([
         { name: 'Sean Whiteley', photo_url: 'http://m2.licdn.com/mpr/mpr/shrink_150_150/p/4/000/184/3bb/1e23ae8.jpg', gender: 0, provider: 0 },
         { name: 'Drew Houston', photo_url: 'http://m1.licdn.com/mpr/mpr/shrink_150_150/p/3/000/090/096/3e3602f.jpg', gender: 0, provider: 0 },
         { name: 'George Hu', photo_url: 'http://m1.licdn.com/mpr/mpr/shrink_150_150/p/4/000/13a/2c8/226db24.jpg', gender: 0, provider: 0 },
-        { name: 'Drew Houston', photo_url: 'http://m1.licdn.com/mpr/mpr/shrink_150_150/p/3/000/090/096/3e3602f.jpg', gender: 0, provider: 0 },
         { name: 'Mark Trang', photo_url: 'http://m1.licdn.com/mpr/mpr/shrink_150_150/p/3/000/067/05a/1a9f353.jpg', gender: 0, provider: 0 },
         { name: 'Roman Stanek', photo_url: 'http://m2.licdn.com/mpr/mpr/shrink_150_150/p/1/000/0f1/2eb/15a5396.jpg', gender: 0, provider: 0 },
+        { name: 'Mark Hurd', photo_url: 'http://m1.licdn.com/mpr/mpr/shrink_150_150/p/4/000/155/1de/25e9d5a.jpg', gender: 0, provider: 0 },
 
         { name: 'Marissa Mayer', photo_url: 'http://m2.licdn.com/media/p/1/000/005/28a/1771ae7.jpg', gender: 1, provider: 0 },
         { name: 'Meg Whitman', photo_url: 'http://m2.licdn.com/media/p/3/000/053/1d1/20ceb9f.jpg', gender: 1, provider: 0 },
