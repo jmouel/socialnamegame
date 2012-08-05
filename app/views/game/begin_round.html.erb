@@ -1,0 +1,24 @@
+<h3>Needle</h3>
+
+<div>
+  <img src="<%= @needle.photo_url %>" />
+</div>
+<div>
+  <%= @needle.name %>
+</div>
+
+<h3>Names</h3>
+
+<% @names.each do |n| %>
+<div>
+  <%= n %>
+</div>
+<% end %>
+
+<h3>Photos</h3>
+
+<% @photos.each do |p| %>
+<div>
+  <img src="<%= p %>" />
+</div>
+<% end %>
