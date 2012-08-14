@@ -1,11 +1,23 @@
-<div class="photos btn-group row-fluid" data-toggle="buttons-radio">
-  <% @photos.each do |p| %>
-  <button class="btn span2" data-action="select-photo"><img src="<%= p %>" /></button>
-  <% end %>
+<div class="gameboard">
+  <div class="photos btn-group row-fluid" data-toggle="buttons-radio">
+    <% @photos.each do |p| %>
+    <button class="btn span2" data-action="select-photo"><img src="<%= p %>" /></button>
+    <% end %>
+  </div>
+
+  <div class="names btn-group row-fluid" data-toggle="buttons-radio">
+    <% @names.each do |n| %>
+    <button class="btn span2" data-action="select-name"><%= n %></button>
+    <% end %>
+  </div>
 </div>
 
-<div class="names btn-group row-fluid" data-toggle="buttons-radio">
-  <% @names.each do |n| %>
-  <button class="btn span2" data-action="select-name"><%= n %></button>
-  <% end %>
+<div class="row-fluid">
+  <span class="span2 result"></span>
+  <span class="span10">
+    <div class="correct hidden">Right on!</div>
+    <div class="incorrect hidden">Wrong!</div>
+  </span>
 </div>
+
+<div class="solution"></div>

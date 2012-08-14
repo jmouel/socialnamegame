@@ -1,3 +1,6 @@
 class Person < ActiveRecord::Base
-  attr_accessible :gender, :name, :photo_url, :provider
+
+  belongs_to :user
+
+  attr_accessible :name, :photo_url, :provider, :user_id, :user
 end

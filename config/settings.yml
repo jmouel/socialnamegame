@@ -1,0 +1,26 @@
+# settings.yml
+defaults: &defaults
+  salesforce:
+    key: <%= ENV['SALESFORCE_KEY'] %>
+    secret: <%= ENV['SALESFORCE_SECRET'] %>
+
+  twitter:
+    key: <%= ENV['TWITTER_KEY'] %>
+    secret: <%= ENV['TWITTER_SECRET'] %>
+
+  linkedin:
+    key: <%= ENV['LINKEDIN_KEY'] %>
+    secret: <%= ENV['LINKEDIN_SECRET'] %>
+
+  facebook:
+    key: <%= ENV['FACEBOOK_KEY'] %>
+    secret: <%= ENV['FACEBOOK_SECRET'] %>
+
+development:
+  <<: *defaults
+
+test: &testing
+  <<: *defaults
+
+production: &prod
+  <<: *defaults

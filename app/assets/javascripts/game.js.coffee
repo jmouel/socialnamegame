@@ -5,14 +5,20 @@ jQuery(document).ready ($) ->
       target = $(e.target).find('img').attr('src')
 
     @selectedPhoto = target
+    $(e.target).closest('.photos').addClass('selected')
     checkAnswer()
 
   $('.btn[data-action="select-name"]').click (e) =>
     @selectedName = $(e.target).closest('button').text()
+    $(e.target).closest('.names').addClass('selected')
     checkAnswer()
 
   checkAnswer = =>
     if @selectedPhoto and @selectedName
+      $('.photos').hide()
+      $('.names').hide()
+      $('.result').append("<img src='#{@selectedPhoto}' /><span class='name'>#{@selectedName}</span>")
+
       $.ajax
         url: 'eval_answer'
         type: 'post'
@@ -21,14 +27,15 @@ jQuery(document).ready ($) ->
         data:
           name: @selectedName
           photo: @selectedPhoto
-        success: (response) ->
+
+        success: (response) =>
           # TODO: Check success/failure and render some cool feedback.
           if response.correct
-            alert('correct!')
+            $('.correct').removeClass('hidden')
           else
-            alert('wrong!')
+            $('.incorrect').removeClass('hidden')
 
           if response.game_over
             # TODO: Go to leaderboard.
           else
-            location.reload()
+#            location.reload()
