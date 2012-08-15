@@ -7,7 +7,7 @@ class GameController < ApplicationController
 
   # Initialize a new round and start its timer. Return names, photos for the round.
   def begin_round
-    people = Person.all
+    people = Person.where(user_id: current_user.id)
     needle = people[rand(people.size)]
     all_except_needle = people.collect { |p| p unless p.name == needle.name }.compact.shuffle
     haystack = all_except_needle.sample(4)
