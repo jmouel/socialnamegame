@@ -14,7 +14,8 @@ class TwitterWorker
       config.oauth_token_secret = a.refresh_token
     end
 
-    ids = tw.friend_ids(a.info).ids.to_a + tw.follower_ids(a.info).ids.to_a
+    ids = tw.friend_ids(a.info).ids.to_a \
+          + tw.follower_ids(a.info).ids.to_a
 
     result = []
     ids.in_groups(1 + (ids.length / 100)).each do |id_group|

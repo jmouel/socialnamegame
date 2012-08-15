@@ -7,7 +7,8 @@ class LinkedinWorker
     user_id = options['user'].to_i
     a = Authentication.find_by_user_id_and_provider(user_id, 'linkedin')
 
-    li = LinkedIn::Client.new(Rails.configuration.linkedin['key'], Rails.configuration.linkedin['secret'])
+    li = LinkedIn::Client.new(Rails.configuration.linkedin['key'],
+                              Rails.configuration.linkedin['secret'])
     li.authorize_from_access(a.token, a.refresh_token)
 
     connections = li.connections(fields: ['formatted-name', 'picture-url'])

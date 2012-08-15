@@ -1,7 +1,12 @@
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, Rails.configuration.twitter['key'], Rails.configuration.twitter['secret']
-  provider :facebook, Rails.configuration.facebook['key'], Rails.configuration.facebook['secret']
-  provider :linkedin, Rails.configuration.linkedin['key'], Rails.configuration.linkedin['secret'],
-           { :client_options => { :request_token_path => '/uas/oauth/requestToken?scope=r_network' } }
-  provider :salesforce, Rails.configuration.salesforce['key'], Rails.configuration.salesforce['secret']
-end
+
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    c = Rails.configuration
+    provider :twitter, c.twitter['key'], c.twitter['secret']
+    provider :facebook, c.facebook['key'], c.facebook['secret']
+    provider :linkedin, c.linkedin['key'], c.linkedin['secret'],
+            { :client_options => {
+                    :request_token_path => '/uas/oauth/requestToken?scope=r_network' }
+            }
+    provider :salesforce, c.salesforce['key'], c.salesforce['secret']
+  end
+
