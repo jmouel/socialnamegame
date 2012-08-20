@@ -1,8 +1,8 @@
-@mixin provider-logo($url)
-  background: image-url("#{$url}_logo_32.png") center center no-repeat
-  width: 32px
-  height: 32px
-  display: inline-block
+@import common
+
+body
+  font-family: verdana, arial
+  color: #666
 
 .salesforce-provider-logo
   @include provider-logo('salesforce')
@@ -23,72 +23,25 @@
     line-height: 32px
     margin-right: 10px
 
-@mixin box-shadow($h, $v, $radius, $spread, $color)
-  -webkit-box-shadow: $h $v $radius $spread $color
-  -moz-box-shadow: $h $v $radius $spread $color
-  box-shadow: $h $v $radius $spread $color
+.centered
+  display: block
+  position: absolute
+  top: 10%
+  left: 15%
+  width: 60%
 
-.btn
-  padding: 10px
-  &:hover
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#0074CC))
-    background-color: #0074CC
-    color: #fff
+.play
+  margin-top: 25px
+  button
+    width: 400px
+    height: 50px
 
-.btn.active
-  @include box-shadow(1px, 1px, 24px, 0, #0074CC)
-  font-color: #62C462
-  font-weight: bold
-  opacity: 1.0 !important
-
-.photos
-  margin-left: 4px
-  margin-top: 20px
-  margin-bottom: 20px
+.business-cat
+  position: fixed
+  bottom: 10px
+  right: 10px
+  @include box-shadow(1px, 1px, 24px, 1px, #02A4D3)
 
   img
-    width: 148px
-
-.selected
-  .btn
-    opacity: .5
-    -webkit-transition: opacity .5s ease-in
-    -moz-transition: opacity .5s ease-in
-    -o-transition: opacity .5s ease-in
-    -ms-transition: opacity .5s ease-in
-    transition: opacity .5s ease-in
-
-.names
-  .btn
-    font-size: 18px
-
-.result
-  width: 100%
-  margin-top: 40px
-  .name
-    font-size: 18px
-    font-weight: bold
-    display: block
-    clear: left
-
-.correct
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#62C462))
-  font-size: 96px
-  font-weight: bold
-  color: #fff
-  margin-top: 40px
-  padding-left: 40px
-  padding-top: 60px
-  height: 90px
-
-.incorrect
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#DA4F49))
-  font-size: 96px
-  font-weight: bold
-  color: #fff
-  margin-top: 40px
-  padding-left: 40px
-  padding-top: 60px
-  height: 90px
-
-
+    width: 200px
+    height: 200px

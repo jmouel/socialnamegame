@@ -29,10 +29,12 @@ class TwitterWorker
 
     ActiveRecord::Base.transaction do
       result.each do |profile|
-        Person.create(user_id: user_id,
-                      name: profile.name,
-                      provider: TWITTER,
-                      photo_url: profile.profile_image_url)
+        if not profile.profile_image_url =~ /default_profile_images/
+          Person.create(user_id: user_id,
+                        name: profile.name,
+                        provider: TWITTER,
+                        photo_url: profile.profile_image_url)
+        end
       end
     end
   end

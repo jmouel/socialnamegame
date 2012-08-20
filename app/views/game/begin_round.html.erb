@@ -1,23 +1,55 @@
-<div class="gameboard">
-  <div class="photos btn-group row-fluid" data-toggle="buttons-radio">
-    <% @photos.each do |p| %>
-    <button class="btn span2" data-action="select-photo"><img src="<%= p %>" /></button>
-    <% end %>
-  </div>
-
-  <div class="names btn-group row-fluid" data-toggle="buttons-radio">
-    <% @names.each do |n| %>
-    <button class="btn span2" data-action="select-name"><%= n %></button>
-    <% end %>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <span class="span2 result"></span>
-  <span class="span10">
-    <div class="correct hidden">Right on!</div>
-    <div class="incorrect hidden">Wrong!</div>
+<div class="status row">
+  <span class="span2">
+    <div class="score value">0</div>
+    <div class="label">Score</div>
   </span>
+  <span class="span2">
+    <div class="round value">5</div>
+    <div class="label">Round time remaining (sec)</div>
+  </span>
+  <span class="span2">
+    <div class="game value">100</div>
+    <div class="label">Game time remaining (sec)</div>
+  </span>
+  <span class="span6 info"></span>
 </div>
 
-<div class="solution"></div>
+<div class="gameboard-container">
+  <div class="gameboard">
+
+    <div class="game-input">
+      <div class="photos btn-group row" data-toggle="buttons-radio">
+        <% @photos.each do |p| %>
+        <button class="btn span2" data-action="select-photo"><img src="<%= p %>" /></button>
+        <% end %>
+      </div>
+
+      <div class="names btn-group row" data-toggle="buttons-radio">
+        <% @names.each do |n| %>
+        <button class="btn span2" data-action="select-name"><%= n %></button>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span2 result"></div>
+      <span class="span6">
+        <div class="correct hidden">correct</div>
+        <div class="incorrect hidden">incorrect</div>
+      </span>
+    </div>
+
+    <div class="row solution hidden">
+      <div class="span4 title">The correct answer is:</div>
+      <div class="span2">
+        <div class="answer-photo"></div>
+        <div class="answer-name"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="business-cat hidden">
+    <img class="taunt" src="" />
+  </div>
+</div>

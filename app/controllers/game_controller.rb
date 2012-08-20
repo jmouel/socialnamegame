@@ -25,6 +25,9 @@ class GameController < ApplicationController
       # Remove the name corresponding to the photo to make sure we don't end up with > 1 correct pair.
       all_except_needle.delete(photo_person)
     end
+
+    session[:answer_name] = needle.name
+    session[:answer_photo] = needle.photo_url
     @names.shuffle!
     @photos.shuffle!
   end
@@ -36,7 +39,14 @@ class GameController < ApplicationController
     name = params[:name]
     photo = params[:photo]
 
-    correct = Person.where(name: name, photo_url: photo).count() == 1
-    render json: { correct: correct }
+    correct = Person.where(name: name, photo_url: photo).count() > 0
+    response = { correct: correct }
+    if not correct
+      response[:answer] = {
+              name: session[:answer_name],
+              photo_url: session[:answer_photo]
+      }
+    end
+    render json: response
   end
 end

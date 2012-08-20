@@ -1,0 +1,10 @@
+@mixin box-shadow($h, $v, $radius, $spread, $color)
+  -webkit-box-shadow: $h $v $radius $spread $color
+  -moz-box-shadow: $h $v $radius $spread $color
+  box-shadow: $h $v $radius $spread $color
+
+@mixin provider-logo($url)
+  background: image-url("#{$url}_logo_32.png") center center no-repeat
+  width: 32px
+  height: 32px
+  display: inline-block

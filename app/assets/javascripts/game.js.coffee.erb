@@ -1,0 +1,75 @@
+jQuery(document).ready ($) ->
+  tick = =>
+    if not responded
+      roundTime--
+      if roundTime < 0
+        $('.game-input').addClass('hidden')
+        wrong()
+        nextRound()
+      else
+        $('.round').text(roundTime)
+        setTimeout tick, 1000
+
+  roundTime = 5
+  responded = false
+  imagePath = '<%= image_path "" %>'
+  taunt = Math.ceil(Math.random()*8)
+  window.setTimeout tick, 1000
+
+  $('.btn[data-action="select-photo"]').click (e) =>
+    target = $(e.target).attr('src')
+    if not target?
+      target = $(e.target).find('img').attr('src')
+
+    @selectedPhoto = target
+    $(e.target).closest('.photos').addClass('selected')
+    checkAnswer()
+
+  $('.btn[data-action="select-name"]').click (e) =>
+    @selectedName = $(e.target).closest('button').text()
+    $(e.target).closest('.names').addClass('selected')
+    checkAnswer()
+
+  nextRound = =>
+    $('.business-cat').removeClass('hidden')
+    $('.info').text('Game continues in 5 seconds')
+    setTimeout ->
+        window.location.reload()
+      , 5000
+
+  wrong = (response) =>
+    $('.incorrect').removeClass('hidden')
+    $('.taunt').attr('src', "#{imagePath}/wrong#{taunt}.jpg")
+    if response
+      answer = response.answer
+      $('.answer-name').text(answer['name'])
+      $('.answer-photo').html("<img src=#{answer['photo_url']} />")
+      $('.solution').removeClass('hidden')
+
+  checkAnswer = =>
+    responded = true
+    if @selectedPhoto and @selectedName
+      $('.photos').hide()
+      $('.names').hide()
+      $('.result').append("<img src='#{@selectedPhoto}' /><span class='name'>#{@selectedName}</span>")
+
+      $.ajax
+        url: 'eval_answer'
+        type: 'post'
+        headers:
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        data:
+          name: @selectedName
+          photo: @selectedPhoto
+
+        success: (response) =>
+          if response.correct
+            $('.correct').removeClass('hidden')
+            $('.taunt').attr('src', "#{imagePath}/right#{taunt}.jpg")
+          else
+            wrong(response)
+
+          nextRound()
+
+#          if response.game_over
+

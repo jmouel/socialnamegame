@@ -1,0 +1,126 @@
+@import common
+
+.gameboard-container
+  position: absolute
+  width: 100%
+  top: 25%
+
+  .gameboard
+    display: block
+    position: relative
+    width: 900px
+    margin: 0 auto
+
+    .names
+      button
+        height: 100px
+
+  .btn
+    padding: 10px
+    &:hover
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#0074CC))
+      background-color: #0074CC
+      color: #fff
+
+  .btn.active
+    @include box-shadow(1px, 1px, 24px, 0, #0074CC)
+    font-color: #62C462
+    font-weight: bold
+    opacity: 1.0 !important
+
+  .photos
+    margin-left: 4px
+    margin-top: 20px
+    margin-bottom: 20px
+
+    button
+      height: 200px
+
+    img
+      width: 148px
+
+  .selected
+    .btn
+      opacity: .5
+      -webkit-transition: opacity .5s ease-in
+      -moz-transition: opacity .5s ease-in
+      -o-transition: opacity .5s ease-in
+      -ms-transition: opacity .5s ease-in
+      transition: opacity .5s ease-in
+
+  .names
+    .btn
+      font-size: 18px
+
+  .result
+    margin-top: 42px
+    text-align: center
+
+    img
+      width: 148px
+
+    .name
+      display: block
+      padding-top: 6px
+      font-size: 24px
+
+  .solution
+    margin-top: 20px
+
+    .title
+      text-align: right
+      font-size: 18px
+
+    img
+      width: 148px
+
+    .answer-name
+      display: block
+      padding-top: 6px
+      text-align: center
+      font-size: 24px
+
+  .correct
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#62C462))
+    font-size: 96px
+    font-weight: bold
+    color: #fff
+    margin-top: 40px
+    padding-left: 40px
+    padding-top: 60px
+    height: 90px
+
+  .incorrect
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#DA4F49))
+    font-size: 96px
+    font-weight: bold
+    color: #fff
+    margin-top: 40px
+    padding-left: 40px
+    padding-top: 60px
+    height: 90px
+
+.status
+  color: #fff
+  padding-top: 10px
+  padding-bottom: 5px
+  border: 1px solid #02A4D3
+  border-radius: 9px
+  margin: 10px
+  background-color: #02A4D3
+  @include box-shadow(1px, 1px, 24px, 0, #02A4D3)
+
+  .value
+    font-size: 24px
+    font-weight: bold
+
+  .label
+    font-weight: normal
+    background-color: transparent
+    margin-top: 3px
+    font-size: 8px
+    text-transform: uppercase
+
+  .info
+    font-size: 18px
+    font-style: italic
