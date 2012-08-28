@@ -49,4 +49,12 @@ class GameController < ApplicationController
     end
     render json: response
   end
+
+  helper_method :score
+
+  private
+
+  def score
+    100
+  end
 end

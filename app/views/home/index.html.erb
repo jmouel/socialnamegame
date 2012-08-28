@@ -2,22 +2,34 @@
 
 <div class="hero-unit centered">
   <h1>Social Name Game</h1>
-  <p>How well do you know your network?</p>
-  <% if current_user %>
-    <%= image_tag current_user.photo_url %> <%= current_user.name %>
-    <%= link_to "[Sign out]", signout_path %>
-    <div class="play">
-      <button class="btn btn-success btn-large" onclick="window.location='/game/begin_round'">Play!</button>
-    </div>
-  <% else %>
-    <div class="signin">
-      <span>Sign in with:</span>
-      <a href="/auth/twitter"><i class="twitter-provider-logo"></i></a>
-      <a href="/auth/facebook"><i class="facebook-provider-logo"></i></a>
-      <a href="/auth/linkedin"> <i class="linkedin-provider-logo"></i></a>
-      <a href="/auth/salesforce"><i class="salesforce-provider-logo"></i></a>
-    </div>
-  <% end %>
+  <div class="subtitle">How well do you know your network?</div>
+
+  <div class="body well">
+    <% if current_user %>
+      <%= image_tag current_user.photo_url %> <%= current_user.name %>
+      <%= link_to "[Sign out]", signout_path %>
+
+      <div class="db-info">
+        Your game database contains <%= people_count %> of your contacts from <%= provider %>.<br />(Only contacts with photos and names are included)
+          <% if more_contacts? %>
+            <p><button class="btn btn-info">Load More Contacts from <%= provider %></button></p>
+          <% end %>
+      </div>
+
+      <div class="play">
+        <button class="btn btn-success btn-large" onclick="window.location='/game/begin_round'">Begin Game!</button>
+      </div>
+    <% else %>
+      <div class="signin">
+        <span>Sign in with:</span>
+        <a href="/auth/twitter"><i class="twitter-provider-logo"></i></a>
+        <a href="/auth/facebook"><i class="facebook-provider-logo"></i></a>
+        <a href="/auth/linkedin"> <i class="linkedin-provider-logo"></i></a>
+        <a href="/auth/salesforce"><i class="salesforce-provider-logo"></i></a>
+      </div>
+    <% end %>
+  </div>
+
   <div class="business-cat">
     <%= image_tag 'home.jpg'%>
   </div>

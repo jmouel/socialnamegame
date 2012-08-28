@@ -14,6 +14,7 @@
     .names
       button
         height: 100px
+        line-height: 28px
 
   .btn
     padding: 10px
@@ -51,54 +52,59 @@
   .names
     .btn
       font-size: 18px
+      line-height: 28px
 
-  .result
-    margin-top: 42px
+.result
+  text-align: center
+  position: relative
+  top: -85px
+
+  img
+    width: 148px
+
+  .name
+    display: block
+    padding-top: 6px
+    font-size: 24px
+    line-height: 28px
+
+.outcome
+  font-size: 96px
+  font-weight: bold
+  color: #fff
+  margin-top: 40px
+  padding-left: 40px
+  padding-top: 60px
+  height: 140px
+  line-height: 48px
+
+.correct
+  @extend .outcome
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#62C462))
+
+.incorrect
+  @extend .outcome
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#DA4F49))
+
+.solution
+  margin-top: 30px
+
+  .title
+    text-align: right
+    font-size: 18px
+
+  .answer-photo
     text-align: center
 
     img
       width: 148px
 
-    .name
-      display: block
-      padding-top: 6px
-      font-size: 24px
-
-  .solution
-    margin-top: 20px
-
-    .title
-      text-align: right
-      font-size: 18px
-
-    img
-      width: 148px
-
-    .answer-name
-      display: block
-      padding-top: 6px
-      text-align: center
-      font-size: 24px
-
-  .correct
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#62C462))
-    font-size: 96px
-    font-weight: bold
-    color: #fff
-    margin-top: 40px
-    padding-left: 40px
-    padding-top: 60px
-    height: 90px
-
-  .incorrect
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#DA4F49))
-    font-size: 96px
-    font-weight: bold
-    color: #fff
-    margin-top: 40px
-    padding-left: 40px
-    padding-top: 60px
-    height: 90px
+  .answer-name
+    display: block
+    text-align: center
+    padding-top: 6px
+    font-size: 24px
+    line-height: 28px
 
 .status
   color: #fff

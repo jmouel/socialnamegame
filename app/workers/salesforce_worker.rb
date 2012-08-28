@@ -11,7 +11,16 @@ class SalesforceWorker
     client.authenticate :token => a.token,
                         :instance_url => a.info,
                         :refresh_token => a.refresh_token
-    users = client.query 'SELECT Name, FullPhotoUrl FROM User WHERE IsActive = true'
+
+    users = []
+    recs = client.query 'SELECT Name, FullPhotoUrl FROM User WHERE IsActive = TRUE'
+    users.push recs
+    while recs.next_page?
+      # Collections pages are up to 2,000 records.
+      recs = recs.next_page
+      users.push recs
+    end
+    users.flatten!
 
     ActiveRecord::Base.transaction do
       users.each do |user|

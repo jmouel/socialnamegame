@@ -10,11 +10,12 @@ jQuery(document).ready ($) ->
         $('.round').text(roundTime)
         setTimeout tick, 1000
 
-  roundTime = 5
-  responded = false
-  imagePath = '<%= image_path "" %>'
-  taunt = Math.ceil(Math.random()*8)
-  window.setTimeout tick, 1000
+  if document.location.pathname == '/game/begin_round'
+    roundTime = 10
+    responded = false
+    imagePath = '<%= image_path "" %>'
+    taunt = Math.ceil(Math.random()*8)
+    window.setTimeout tick, 1000
 
   $('.btn[data-action="select-photo"]').click (e) =>
     target = $(e.target).attr('src')
@@ -38,7 +39,8 @@ jQuery(document).ready ($) ->
       , 5000
 
   wrong = (response) =>
-    $('.incorrect').removeClass('hidden')
+    $('.result-stripe').addClass('incorrect')
+    $('.incorrect-text').removeClass('hidden')
     $('.taunt').attr('src', "#{imagePath}/wrong#{taunt}.jpg")
     if response
       answer = response.answer
@@ -64,12 +66,13 @@ jQuery(document).ready ($) ->
 
         success: (response) =>
           if response.correct
-            $('.correct').removeClass('hidden')
+            $('.result-stripe').addClass('correct')
+            $('.correct-text').removeClass('hidden')
             $('.taunt').attr('src', "#{imagePath}/right#{taunt}.jpg")
           else
             wrong(response)
 
-          nextRound()
-
 #          if response.game_over
+
+#          nextRound()
 
