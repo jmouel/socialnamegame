@@ -5,13 +5,14 @@
   </span>
   <span class="span2">
     <div class="round value">10</div>
-    <div class="label">Round time remaining (sec)</div>
+    <div class="label">Time remaining in round (sec)</div>
   </span>
   <span class="span2">
-    <div class="game value">100</div>
-    <div class="label">Game time remaining (sec)</div>
+    <div class="game value"><%= roundsRemaining %></div>
+    <div class="label">Rounds remaining in game</div>
   </span>
-  <span class="span6 info"></span>
+  <span class="span2 result"></span>
+  <span class="span4 info"></span>
 </div>
 
 <div class="gameboard-container">
@@ -37,18 +38,3 @@
   </div>
 </div>
 
-<div class="result-stripe row">
-  <div class="span2 result"></div>
-  <span class="span10">
-    <div class="correct-text hidden">correct</div>
-    <div class="incorrect-text hidden">incorrect</div>
-  </span>
-</div>
-
-<div class="row solution hidden">
-  <div class="span2 title">The correct answer is:</div>
-  <div class="span3">
-    <div class="answer-photo"></div>
-    <div class="answer-name"></div>
-  </div>
-</div>

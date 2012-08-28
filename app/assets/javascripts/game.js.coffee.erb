@@ -2,10 +2,8 @@ jQuery(document).ready ($) ->
   tick = =>
     if not responded
       roundTime--
-      if roundTime < 0
-        $('.game-input').addClass('hidden')
-        wrong()
-        nextRound()
+      if roundTime < 1
+        checkAnswer(true)
       else
         $('.round').text(roundTime)
         setTimeout tick, 1000
@@ -33,27 +31,23 @@ jQuery(document).ready ($) ->
 
   nextRound = =>
     $('.business-cat').removeClass('hidden')
-    $('.info').text('Game continues in 5 seconds')
-    setTimeout ->
-        window.location.reload()
-      , 5000
+    $('.info').html('Game continues in <span class="timeout">3</span> seconds')
+    roundTime = 3
+    setTimeout updateNextRoundTime, 1000
 
-  wrong = (response) =>
-    $('.result-stripe').addClass('incorrect')
-    $('.incorrect-text').removeClass('hidden')
-    $('.taunt').attr('src', "#{imagePath}/wrong#{taunt}.jpg")
-    if response
-      answer = response.answer
-      $('.answer-name').text(answer['name'])
-      $('.answer-photo').html("<img src=#{answer['photo_url']} />")
-      $('.solution').removeClass('hidden')
+  updateNextRoundTime = =>
+    roundTime--
+    if roundTime < 1
+      document.location.reload()
+    else
+      $('.timeout').text(roundTime)
+      setTimeout updateNextRoundTime, 1000
 
-  checkAnswer = =>
-    responded = true
-    if @selectedPhoto and @selectedName
-      $('.photos').hide()
-      $('.names').hide()
-      $('.result').append("<img src='#{@selectedPhoto}' /><span class='name'>#{@selectedName}</span>")
+  checkAnswer = (timeout = false) =>
+    if (@selectedPhoto and @selectedName) or timeout
+      responded = true
+      $('.btn[data-action="select-photo"]').unbind()
+      $('.btn[data-action="select-name"]').unbind()
 
       $.ajax
         url: 'eval_answer'
@@ -66,13 +60,31 @@ jQuery(document).ready ($) ->
 
         success: (response) =>
           if response.correct
-            $('.result-stripe').addClass('correct')
-            $('.correct-text').removeClass('hidden')
+            $('.status').addClass('correct-status')
+            $('.result').text('Correct!')
+
             $('.taunt').attr('src', "#{imagePath}/right#{taunt}.jpg")
+            $('.business-cat').removeClass('hidden')
           else
             wrong(response)
 
-#          if response.game_over
+          nextRound()
 
-#          nextRound()
+  wrong = (response) =>
+    $('.status').addClass('incorrect-status')
+    $('.result').text('Incorrect!')
+
+    $('.taunt').attr('src', "#{imagePath}/wrong#{taunt}.jpg")
+    $('.business-cat').removeClass('hidden')
+
+    $('button').removeClass('active')
+    if response
+      answer = response.answer
+      $('.btn[data-action="select-name"]').each (idx, name) =>
+        if $(name).text() == answer['name']
+          $(name).addClass('correct')
+
+      $('.btn[data-action="select-photo"]').each (idx, photo) =>
+        if $(photo).find('img').attr('src') == answer['photo_url']
+          $(photo).addClass('correct')
 

@@ -2,11 +2,21 @@ class GameController < ApplicationController
 
   # Initialize a new game and start its timer.
   def begin_game
-    render json: {}
+    session[:score] = 0
+    session[:roundsRemaining] = 10
+    redirect_to '/game/begin_round'
+  end
+
+  def end_game
   end
 
   # Initialize a new round and start its timer. Return names, photos for the round.
   def begin_round
+    if session[:roundsRemaining] == 0
+      redirect_to '/game/end_game'
+      return
+    end
+
     people = Person.where(user_id: current_user.id)
     needle = people[rand(people.size)]
     all_except_needle = people.collect { |p| p unless p.name == needle.name }.compact.shuffle
@@ -46,15 +56,29 @@ class GameController < ApplicationController
               name: session[:answer_name],
               photo_url: session[:answer_photo]
       }
+    else
+      increase_score
     end
+    decrease_rounds_remaining
     render json: response
   end
 
-  helper_method :score
+  helper_method :score, :roundsRemaining
 
   private
+  def increase_score
+    session[:score] += 10
+  end
+
+  def decrease_rounds_remaining
+    session[:roundsRemaining] -= 1
+  end
 
   def score
-    100
+    session[:score]
+  end
+
+  def roundsRemaining
+    session[:roundsRemaining]
   end
 end

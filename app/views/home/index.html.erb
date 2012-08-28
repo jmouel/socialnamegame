@@ -1,4 +1,4 @@
-<a href="https://github.com/jmouel/socialnamegame"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/jmouel/socialnamegame"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
 <div class="hero-unit centered">
   <h1>Social Name Game</h1>
@@ -10,14 +10,14 @@
       <%= link_to "[Sign out]", signout_path %>
 
       <div class="db-info">
-        Your game database contains <%= people_count %> of your contacts from <%= provider %>.<br />(Only contacts with photos and names are included)
+        Your game contains <%= people_count %> of your contacts from <%= provider %>.<br />(Only contacts with photos and names are included)
           <% if more_contacts? %>
             <p><button class="btn btn-info">Load More Contacts from <%= provider %></button></p>
           <% end %>
       </div>
 
       <div class="play">
-        <button class="btn btn-success btn-large" onclick="window.location='/game/begin_round'">Begin Game!</button>
+        <button class="btn btn-success btn-large" onclick="window.location='/game/begin_game'">Begin Game!</button>
       </div>
     <% else %>
       <div class="signin">
@@ -28,9 +28,5 @@
         <a href="/auth/salesforce"><i class="salesforce-provider-logo"></i></a>
       </div>
     <% end %>
-  </div>
-
-  <div class="business-cat">
-    <%= image_tag 'home.jpg'%>
   </div>
 </div>

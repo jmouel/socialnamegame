@@ -54,57 +54,17 @@
       font-size: 18px
       line-height: 28px
 
-.result
-  text-align: center
-  position: relative
-  top: -85px
-
-  img
-    width: 148px
-
-  .name
-    display: block
-    padding-top: 6px
-    font-size: 24px
-    line-height: 28px
-
-.outcome
-  font-size: 96px
+button.incorrect
+  @include box-shadow(1px, 1px, 24px, 0, #DA4F49)
+  color: #DA4F49
   font-weight: bold
-  color: #fff
-  margin-top: 40px
-  padding-left: 40px
-  padding-top: 60px
-  height: 140px
-  line-height: 48px
+  opacity: 0.8 !important
 
-.correct
-  @extend .outcome
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#62C462))
-
-.incorrect
-  @extend .outcome
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#DA4F49))
-
-.solution
-  margin-top: 30px
-
-  .title
-    text-align: right
-    font-size: 18px
-
-  .answer-photo
-    text-align: center
-
-    img
-      width: 148px
-
-  .answer-name
-    display: block
-    text-align: center
-    padding-top: 6px
-    font-size: 24px
-    line-height: 28px
+button.correct
+  @include box-shadow(1px, 1px, 24px, 0, #62C462)
+  color: #62C462
+  font-weight: bold
+  opacity: 1.0 !important
 
 .status
   color: #fff
@@ -127,6 +87,20 @@
     font-size: 8px
     text-transform: uppercase
 
+  .result
+    font-size: 24px
+    font-weight: bold
+
   .info
     font-size: 18px
     font-style: italic
+
+.correct-status
+  background-color: #62C462
+  border: 1px solid #62C462
+  @include box-shadow(1px, 1px, 24px, 0, #62C462)
+
+.incorrect-status
+  background-color: #DA4F49
+  border: 1px solid #DA4F49
+  @include box-shadow(1px, 1px, 24px, 0, #DA4F49)
