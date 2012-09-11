@@ -26,8 +26,8 @@
       </div>
 
       <div class="names btn-group row" data-toggle="buttons-radio">
-        <% @names.each do |n| %>
-        <button class="btn span2" data-action="select-name" data-id="<%= n[0] %>"><%= n[1] %></button>
+        <% @ids.each do |id| %>
+        <button class="btn span2" data-action="select-name" data-id="<%= id %>"><%= @names[id] %></button>
         <% end %>
       </div>
     </div>

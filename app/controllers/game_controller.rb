@@ -26,14 +26,16 @@ class GameController < ApplicationController
     all_except_needle = people.collect { |p| p unless p.id == needle.id }.compact.shuffle
     haystack = all_except_needle.sample(4)
 
+    @ids = [ needle.id ]
     @names = {}
     @names[needle.id] = needle.name
     @photos = [ needle.photo_url ]
 
     haystack.each do |h|
+      @ids.push h.id
       @names[h.id] = h.name
       photo_person = all_except_needle.find do |p|
-        !@names.include?(p.name) and !@photos.include?(p.photo_url)
+        !@ids.include?(p.id) and !@photos.include?(p.photo_url)
       end
       @photos.push photo_person.photo_url
       # Remove the name corresponding to the photo to make sure we don't end up with > 1 correct pair.
@@ -44,7 +46,7 @@ class GameController < ApplicationController
     session[:answer_id] = needle.id
     session[:answer_photo] = needle.photo_url
 
-    @names.sort_by { rand } #shuffle!
+    @ids.shuffle!
     @photos.shuffle!
   end
 
@@ -84,6 +86,7 @@ class GameController < ApplicationController
     # Get 3 correct in a row for a bonus 5 rounds
     if session[:streak] > 2
       session[:roundsRemaining] += 5
+      session[:streak] = 0
     end
   end
 
