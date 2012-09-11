@@ -1,9 +1,10 @@
 class GameController < ApplicationController
 
-  # Initialize a new game and start its timer.
+  # Initialize a new game.
   def begin_game
     session[:score] = 0
     session[:roundsRemaining] = 10
+    session[:streak] = 0
     redirect_to '/game/begin_round'
   end
 
@@ -19,15 +20,15 @@ class GameController < ApplicationController
 
     people = Person.where(user_id: current_user.id)
     needle = people[rand(people.size)]
-    all_except_needle = people.collect { |p| p unless p.name == needle.name }.compact.shuffle
+    all_except_needle = people.collect { |p| p unless p.id == needle.id }.compact.shuffle
     haystack = all_except_needle.sample(4)
 
-    @names = [ needle.name ]
+    @names = {}
+    @names[needle.id] = needle.name
     @photos = [ needle.photo_url ]
 
     haystack.each do |h|
-      @names.push h.name
-      # Find a random picture of the same gender that is not the needle.
+      @names[h.id] = h.name
       photo_person = all_except_needle.find do |p|
         !@names.include?(p.name) and !@photos.include?(p.photo_url)
       end
@@ -36,26 +37,29 @@ class GameController < ApplicationController
       all_except_needle.delete(photo_person)
     end
 
-    session[:answer_name] = needle.name
+    # Save the answer in the session because we need to send it back to the client if their response is wrong.
+    session[:answer_id] = needle.id
     session[:answer_photo] = needle.photo_url
-    @names.shuffle!
+
+    @names.sort_by { rand } #shuffle!
     @photos.shuffle!
   end
 
   # Evaluate user's answer, update score.
-  # Do not allow multiple submissions within a round.
-  # Do not allow submissions outside of a game.
   def eval_answer
-    name = params[:name]
+    id = params[:id]
     photo = params[:photo]
 
-    correct = Person.where(name: name, photo_url: photo).count() > 0
+    p = Person.find(id)
+    correct = p.photo_url == photo
+
     response = { correct: correct }
     if not correct
       response[:answer] = {
-              name: session[:answer_name],
+              id: session[:answer_id],
               photo_url: session[:answer_photo]
       }
+      session[:streak] = 0
     else
       increase_score
     end
@@ -68,6 +72,11 @@ class GameController < ApplicationController
   private
   def increase_score
     session[:score] += 10
+    session[:streak] += 1
+    # Get 3 correct in a row for a bonus 5 rounds
+    if session[:streak] > 2
+      session[:roundsRemaining] += 5
+    end
   end
 
   def decrease_rounds_remaining

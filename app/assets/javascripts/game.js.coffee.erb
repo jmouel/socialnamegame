@@ -25,7 +25,7 @@ jQuery(document).ready ($) ->
     checkAnswer()
 
   $('.btn[data-action="select-name"]').click (e) =>
-    @selectedName = $(e.target).closest('button').text()
+    @selectedId = $(e.target).closest('button').data()['id']
     $(e.target).closest('.names').addClass('selected')
     checkAnswer()
 
@@ -44,7 +44,7 @@ jQuery(document).ready ($) ->
       setTimeout updateNextRoundTime, 1000
 
   checkAnswer = (timeout = false) =>
-    if (@selectedPhoto and @selectedName) or timeout
+    if (@selectedPhoto and @selectedId) or timeout
       responded = true
       $('.btn[data-action="select-photo"]').unbind()
       $('.btn[data-action="select-name"]').unbind()
@@ -55,7 +55,7 @@ jQuery(document).ready ($) ->
         headers:
           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         data:
-          name: @selectedName
+          id: @selectedId
           photo: @selectedPhoto
 
         success: (response) =>
@@ -81,7 +81,7 @@ jQuery(document).ready ($) ->
     if response
       answer = response.answer
       $('.btn[data-action="select-name"]').each (idx, name) =>
-        if $(name).text() == answer['name']
+        if $(name).data()['id'] == answer['id']
           $(name).addClass('correct')
 
       $('.btn[data-action="select-photo"]').each (idx, photo) =>
