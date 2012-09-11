@@ -1,8 +1,23 @@
 <a href="https://github.com/jmouel/socialnamegame"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
 <div class="hero-unit centered">
-  <h1>Social Name Game</h1>
-  <div class="subtitle">How well do you know your network?</div>
+  <h1>Social Name Game
+  <small>How well do you know your network?</small></h1>
+
+  <p>
+    This is a sample app built for <a href="http://www.salesforce.com/dreamforce/DF12/">Dreamforce 2012</a>.
+    It retrieves your contacts from Twitter, Facebook, LinkedIn, or Salesforce and their
+    the names and photos to test your ability to visually identify them.
+  </p>
+
+  <h4>Instructions</h4>
+  <ul>
+    <li>A game lasts for 10 rounds.</li>
+    <li>During each round, a series of 5 random photos and names are shown from your network.</li>
+    <li>Only one name/photo pair is correct.</li>
+    <li>Identify the correct name/photo pair within 5 seconds and receive 10 points.</li>
+    <li>If you make 3 correct selections in a row, you receive a bonus 5 rounds.</li>
+  </ul>
 
   <div class="body well">
     <% if current_user %>
@@ -28,5 +43,8 @@
         <a href="/auth/salesforce"><i class="salesforce-provider-logo"></i></a>
       </div>
     <% end %>
+
   </div>
+
+  <h4><a href="/game/scores">High Scores</a></h4>
 </div>

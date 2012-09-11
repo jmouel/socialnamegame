@@ -9,6 +9,9 @@ class GameController < ApplicationController
   end
 
   def end_game
+    Score.create(user_id: current_user.id,
+                 value: session[:score],
+                 created_at: Time.now())
   end
 
   # Initialize a new round and start its timer. Return names, photos for the round.
@@ -65,6 +68,11 @@ class GameController < ApplicationController
     end
     decrease_rounds_remaining
     render json: response
+  end
+
+  # High scores
+  def scores
+    @scores = Score.order('value desc').first(5)
   end
 
   helper_method :score, :roundsRemaining

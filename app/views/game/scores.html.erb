@@ -1,0 +1,20 @@
+<div class="container scores">
+  <div class="container-fluid">
+
+    <div class="page-header">
+      <h1>High Scores</h1>
+    </div>
+    <small><a href="/">&lsaquo; Go Back</a></small>
+
+    <table class="table table-striped">
+    <% @scores.each do |s| %>
+      <tr>
+        <td><img src="<%= s.user.photo_url %>" /></td>
+        <td><h3><%= s.user.name %></h3></td>
+        <td><h3><%= s.value %></h3></td>
+        <td><%= s.created_at.strftime("%m/%d/%Y") %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
