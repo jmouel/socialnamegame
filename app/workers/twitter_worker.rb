@@ -15,7 +15,7 @@ class TwitterWorker
     end
 
     ids = tw.friend_ids(a.info).ids.to_a \
-          + tw.follower_ids(a.info).ids.to_a
+          + tw.follower_ids(a.info).ids.to_a[0..Rails.configuration.maxContacts]
 
     result = []
     ids.in_groups(1 + (ids.length / 100)).each do |id_group|

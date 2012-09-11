@@ -16,6 +16,8 @@ defaults: &defaults
     key: <%= ENV['FACEBOOK_KEY'] %>
     secret: <%= ENV['FACEBOOK_SECRET'] %>
 
+  maxContacts: <%= ENV['MAX_CONTACTS'] %>
+
 development:
   <<: *defaults
 

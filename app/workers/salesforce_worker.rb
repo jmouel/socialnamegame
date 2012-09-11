@@ -13,10 +13,9 @@ class SalesforceWorker
                         :refresh_token => a.refresh_token
 
     users = []
-    recs = client.query 'SELECT Name, FullPhotoUrl FROM User WHERE IsActive = TRUE'
+    recs = client.query "SELECT Name, FullPhotoUrl FROM User WHERE IsActive = TRUE LIMIT #{Rails.configuration.maxContacts}"
     users.push recs
     while recs.next_page?
-      # Collections pages are up to 2,000 records.
       recs = recs.next_page
       users.push recs
     end
@@ -24,10 +23,12 @@ class SalesforceWorker
 
     ActiveRecord::Base.transaction do
       users.each do |user|
-        Person.create(user_id: user_id,
-                      name: user.Name,
-                      provider: SALESFORCE,
-                      photo_url: "#{user.FullPhotoUrl}?oauth_token=#{a.token}")
+        if not user.FullPhotoUrl =~ /\/005\/F?/
+          Person.create(user_id: user_id,
+                        name: user.Name,
+                        provider: SALESFORCE,
+                        photo_url: "#{user.FullPhotoUrl}?oauth_token=#{a.token}")
+        end
       end
     end
   end

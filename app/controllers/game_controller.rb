@@ -54,9 +54,12 @@ class GameController < ApplicationController
   def eval_answer
     id = params[:id]
     photo = params[:photo]
+    correct = false
 
-    p = Person.find(id)
-    correct = p.photo_url == photo
+    if id
+      p = Person.find(id)
+      correct = p.photo_url == photo
+    end
 
     response = { correct: correct }
     if not correct

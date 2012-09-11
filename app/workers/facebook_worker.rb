@@ -8,7 +8,7 @@ class FacebookWorker
     a = Authentication.find_by_user_id_and_provider(user_id, 'facebook')
     graph = Koala::Facebook::API.new(a.token)
     friends = graph.get_connections("me", "friends")
-    ids = friends[0...200].collect { |f| f['id'] }
+    ids = friends[0...Rails.configuration.maxContacts].collect { |f| f['id'] }
     objects = graph.get_objects(ids)
     pictures = []
 

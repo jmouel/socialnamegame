@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20120813173245) do
     t.string   "refresh_token"
     t.string   "info"
     t.integer  "user_id"
-    t.integer  "data_position", :default => 0, :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

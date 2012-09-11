@@ -14,7 +14,7 @@ class LinkedinWorker
     connections = li.connections(fields: ['formatted-name', 'picture-url'])
 
     ActiveRecord::Base.transaction do
-      connections.all.each do |connection|
+      connections.all[0..Rails.configuration.maxContacts].each do |connection|
         if connection['picture-url'] and connection['formatted-name']
           Person.create(user_id: user_id,
                         name: connection['formatted-name'],

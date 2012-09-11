@@ -6,7 +6,7 @@
 
   <p>
     This is a sample app built for <a href="http://www.salesforce.com/dreamforce/DF12/">Dreamforce 2012</a>.
-    It retrieves your contacts from Twitter, Facebook, LinkedIn, or Salesforce and their
+    It retrieves your contacts (up to 500) from Twitter, Facebook, LinkedIn, or Salesforce and their
     the names and photos to test your ability to visually identify them.
   </p>
 
@@ -15,8 +15,9 @@
     <li>A game lasts for 10 rounds.</li>
     <li>During each round, a series of 5 random photos and names are shown from your network.</li>
     <li>Only one name/photo pair is correct.</li>
-    <li>Identify the correct name/photo pair within 5 seconds and receive 10 points.</li>
+    <li>Identify the correct name/photo pair within 10 seconds and receive 10 points.</li>
     <li>If you make 3 correct selections in a row, you receive a bonus 5 rounds.</li>
+    <li>At least 100 contacts are required to play the game.</li>
   </ul>
 
   <div class="body well">
@@ -26,14 +27,15 @@
 
       <div class="db-info">
         Your game contains <%= people_count %> of your contacts from <%= provider %>.<br />(Only contacts with photos and names are included)
-          <% if more_contacts? %>
-            <p><button class="btn btn-info">Load More Contacts from <%= provider %></button></p>
-          <% end %>
       </div>
 
+      <% if people_count < 100 %>
+        <div class="error">You need at least 100 contacts to play the game.</div>
+      <% else %>
       <div class="play">
         <button class="btn btn-success btn-large" onclick="window.location='/game/begin_game'">Begin Game!</button>
       </div>
+      <% end %>
     <% else %>
       <div class="signin">
         <span>Sign in with:</span>
