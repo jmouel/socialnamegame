@@ -22,12 +22,12 @@ The following are instructions for OS X 10.8:
 - http://mxcl.github.com/homebrew/
 
 #### PostgreSQL
-- Install PostgreSQL 9. ``brew install postgresql``
+- Install PostgreSQL 9: ``brew install postgresql``
 
 #### Ruby
-- Install Ruby 1.9. ``brew install ruby``
+- Install Ruby 1.9: ``brew install ruby``
 - Override the standard Mac OS X install of Ruby by modifying the /etc/paths and moving the home-brews to the top of the file (/usr/local/bin), and also point /usr/bin/bundle at the new ruby interpreter location as well (first line). Or use rvm or rbenv.
-- Install bundler. ``sudo gem install bundler``
+- Install bundler: ``sudo gem install bundler``
 - Install pg gem:
 ```
 sudo su
@@ -37,8 +37,8 @@ env ARCHFLAGS="-arch x86_64" gem install pg -v '0.14.0'
 ### Application Setup
 
 #### Database
-- Initialize. ``initdb /usr/local/var/postgres -E utf8``
-- Start. ``pg_ctl -D /usr/local/var/postgres -l logfile start``
+- Initialize: ``initdb /usr/local/var/postgres -E utf8``
+- Start: ``pg_ctl -D /usr/local/var/postgres -l logfile start``
 - Connect and create a new user and database for the game:
 
 ```
@@ -54,17 +54,45 @@ GRANT ALL PRIVILEGES ON DATABASE socialnamegame TO dbuser;
 #### Get App Dependencies
 ```bundle install```
 
-#### Configure the App
-- Copy the database config and modify as necessary if you're using your own database / username / password.
+#### Configure the Database Connection
+Copy the database config and modify as necessary if you're using a different database, user, etc.
 ``cp config/database.yml.sample config/database.yml``
-- Create your OAuth applications on Facebook, LinkedIn, Twitter, and Salesforce.
-- Copy the sample settings and enter in the keys and secrets that you got from the social providers.
-``cp config/settings.yml.sample config/settings.yml``
 
 #### Create the Database Schema
 ``rake db:setup``
 
-#### Start the App
+### Social Provider Setup
+
+Socialnamegame uses OAuth to authenticate users to the 4 supported social data providers. For each, you must create an "Application" (the shared
+secret between the provider and your server) and configure socialnamegame to use it.
+
+#### Prepare Configuration
+``cp config/settings.yml.sample config/settings.yml``
+- Your OAuth settings for each provider will go into _config/settings.yml_.
+
+#### Twitter
+- Visit <https://dev.twitter.com> and create a new application.
+- For the _Callback URL_, use _http://localhost:3000/auth/twitter/callback_.
+- Copy the Consumer Key and Consumer Secret from Twitter into the _twitter_ _key:_ and _secret:_ fields in _settings.yml_.
+
+#### LinkedIn
+
+- Go to <https://www.linkedin.com/secure/developer> and add an application.
+- Copy the API Key and Secret Key from LinkedIn into the _linkedin_ _key:_ and _secret:_ fields in _settings.yml_.
+
+#### Facebook
+
+- Create a new app at <http://facebook.com/developers>.
+- Set the _Site URL_ field to _http://localhost:3000/_.
+- Copy the Consumer Key and Consumer Secret from Facebook into the _facebook_ _key:_ and _secret:_ fields in _settings.yml_.
+
+#### Salesforce
+
+- Go to App Setup > Develop > Remote Access and create a new Remote Access Application.
+- Set the _Callback URL_ to _http://localhost:3000/auth/salesforce/callback_.
+- Copy the Consumer Key and Consumer Secret from Salesforce into the _salesforce_ _key:_ and _secret:_ fields in _settings.yml_.
+
+### Start the App
 ``rails server``
 
 Browse to <http://localhost:3000/> to start playing.
