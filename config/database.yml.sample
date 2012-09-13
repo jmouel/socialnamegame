@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: socialnamegame
+  pool: 5
+  host: localhost
+  username: dbuser
+  password: dbpass
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: socialnamegame
+  pool: 5
+  host: localhost
+  username: dbuser
+  password: dbpass
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: socialnamegame
+  pool: 25
+  host: localhost
+  username: dbuser
+  password: dbpass

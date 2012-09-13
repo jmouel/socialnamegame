@@ -18,4 +18,5 @@
 /tmp
 
 config/settings.local.yml
+config/database.yml
 public/assets
