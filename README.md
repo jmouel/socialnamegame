@@ -97,4 +97,24 @@ secret between the provider and your server) and configure socialnamegame to use
 
 Browse to <http://localhost:3000/> to start playing.
 
+FAQ
+---
+#### Why does your _________ (code/architecture/approach/ux/ui/hairdo) suck so much?
+This is just sample code for a Dreamforce session, not a production app. Sorry to disappoint. If you have improvements, feel free to create a pull request and I'll review it.
 
+#### Can I play the game without following all of these gosh darn instructions?
+Yes. Visit <https://www.socialnamegame.com>. It's hosted on Heroku.
+
+#### Why does the app suck hard in ________ (Firefox/IE/Opera)?
+I only had time to test on Chrome. See above.
+
+#### Why do you only load 500 contacts at most?
+Because Heroku limits requests to 30 seconds, and a lot of social APIs are slow. An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy.
+
+#### Why didn't you use _________ (resque/sidekiq/other async gem) to import the social contacts in the background?
+Because Heroku workers cost money, and I'm cheap.
+
+#### Why do you have a separate table for authentications instead of denormalizing to place them in the User table?
+Originally I'd thought the game would merge all of the providers into one big game database per user. So a single user record would contain up to 4 authentications, one per provider. 
+But the data quality (images, names) varies so much between provider that it turns out to be a better idea to keep them separate,
+for the sake of good gameplay.
