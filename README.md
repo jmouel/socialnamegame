@@ -102,14 +102,18 @@ FAQ
 #### Why does your _________ (code/architecture/approach/ux/ui/hairdo) suck so much?
 This is just sample code for a Dreamforce session, not a production app. Sorry to disappoint. If you have improvements, feel free to create a pull request and I'll review it.
 
-#### Can I play the game without following all of these gosh darn instructions?
-Yes. Visit <https://www.socialnamegame.com>. It's hosted on Heroku.
-
 #### Why does the app suck hard in ________ (Firefox/IE/Opera)?
 I only had time to test on Chrome. See above.
 
+#### Can I play the game without following all of these gosh darn instructions?
+Yes. Visit <https://www.socialnamegame.com>. It's hosted on Heroku.
+
+#### Why aren't there instructions for _________ (Windows/Linux/OS2/BeOS/AmigaOS)?
+I primarily use a Mac. If you want to write instructions for another OS, I'll add them to this readme.
+
 #### Why do you only load 500 contacts at most?
-Because Heroku limits requests to 30 seconds, and a lot of social APIs are slow. An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy.
+Because Heroku limits requests to 30 seconds, the app is hosted on Heroku, and a lot of social APIs are slow. 
+An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy.
 
 #### Why didn't you use _________ (resque/sidekiq/other async gem) to import the social contacts in the background?
 Because Heroku workers cost money, and I'm cheap.
