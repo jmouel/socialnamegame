@@ -19,10 +19,10 @@ The following are instructions for OS X 10.8:
   - Launch Xcode. Select Xcode > Preferences, click Downloads tab, and click the Install button for the Command Line Tools.
 
 #### Homebrew
-- http://mxcl.github.com/homebrew/
+http://mxcl.github.com/homebrew/
 
 #### PostgreSQL
-- Install PostgreSQL 9: ``brew install postgresql``
+Install PostgreSQL 9: ``brew install postgresql``
 
 #### Ruby
 - Install Ruby 1.9: ``brew install ruby``
@@ -49,7 +49,7 @@ GRANT ALL PRIVILEGES ON DATABASE socialnamegame TO dbuser;
 ```
 
 #### Get the Code
-- Clone the repository. ``git clone https://github.com/jmouel/socialnamegame.git``
+Clone the repository. ``git clone https://github.com/jmouel/socialnamegame.git``
 
 #### Get App Dependencies
 ```bundle install```
