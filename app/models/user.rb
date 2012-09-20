@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :photo_url
 
   has_many :authentications
+  has_many :persons
 
   def self.find_from_omniauth(auth)
     auth = Authentication.find_by_provider_and_uid(auth["provider"],

@@ -6,5 +6,7 @@ Socialnamegame::Application.routes.draw do
 
   match "/signout" => "sessions#destroy", :as => :signout
 
+  match '/delete_account' => "home#delete_account", :as => :delete_account
+
   root :to => "home#index"
 end

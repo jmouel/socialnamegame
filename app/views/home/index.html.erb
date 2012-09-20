@@ -23,6 +23,7 @@
     <% if current_user %>
       <%= image_tag current_user.photo_url %> <%= current_user.name %>
       <%= link_to "[Sign out]", signout_path %>
+      <%= link_to "[Delete account]", delete_account_path %>
 
       <div class="db-info">
         Your game contains <%= people_count %> of your contacts from <%= provider %>.<br />(Only contacts with photos and names are included)
