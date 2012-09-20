@@ -110,7 +110,7 @@ I only had time to test on Chrome. See above.
 Yes. Visit <https://www.socialnamegame.com>. It's hosted on Heroku.
 
 #### Why should I trust your silly app with my precious social data?
-Well you can read the code. I'm not doing anything sneaky. And if you don't trust the Heroku-hosted version, don't use it. You can also click Delete Account to remove all record of your social data and authentication token.
+Well you can read the code. I'm not doing anything sneaky. And if you don't trust the Heroku-hosted version, don't use it. You can also click Delete Account to remove your social data and authentication token.
 
 #### Why aren't there instructions for _________ (Windows/Linux/OS2/BeOS/AmigaOS)?
 I primarily use a Mac. If you want to write instructions for another OS, I'll add them to this readme.
