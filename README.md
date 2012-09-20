@@ -103,17 +103,26 @@ FAQ
 #### Why does your _________ (code/architecture/approach/ux/ui/hairdo) suck so much?
 This project exists to share the sample code I presented in a Dreamforce session. It's not a production-quality app. If you have improvements, feel free to create a pull request and I'll review it.
 
-#### Why does the app suck hard in ________ (Firefox/IE/Opera)?
+#### Why does the app suck hard in ________ (Firefox/IE/Opera/mobile device)?
 I only had time to test on Chrome. See above.
 
 #### Can I play the game without following all of these gosh darn instructions?
 Yes. Visit <https://www.socialnamegame.com>. It's hosted on Heroku.
 
+#### Why should I trust your silly app with my precious social data?
+Well you can read the code. I'm not doing anything sneaky. And if you don't trust the Heroku-hosted version, don't use it. You can also click Delete Account to remove all record of your social data and authentication token.
+
 #### Why aren't there instructions for _________ (Windows/Linux/OS2/BeOS/AmigaOS)?
 I primarily use a Mac. If you want to write instructions for another OS, I'll add them to this readme.
 
-#### Why do you only load 500 contacts at most?
-Because Heroku limits requests to 30 seconds, the app is hosted on Heroku, and a lot of social APIs are slow. 
+#### Why did you use ________ (CoffeeScript/Saas)? I like __________ (JavaScript/CSS).
+Personal preference. You can always view the source to see the raw JS/CSS, which is extremely readable.
+
+#### Why didn't you use __________ (Backbone.js/framework*,push)?
+Tried to keep the number of technologies unrelated to social to a minimum.
+
+#### Why do you only load 500 contacts? I'm really popular so I have _________ (> 500) contacts and want to use them in the game.
+Heroku limits requests to 30 seconds, the app is hosted on Heroku, and a lot of social APIs are slow. 
 An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy. The easiest solution is to import contacts asynchronously. See below.
 
 #### Why didn't you use _________ (resque/sidekiq/other async gem) to import the social contacts in the background?
