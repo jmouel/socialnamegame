@@ -90,6 +90,7 @@ secret between the provider and your server) and configure socialnamegame to use
 
 - Go to App Setup > Develop > Remote Access and create a new Remote Access Application.
 - Set the _Callback URL_ to _http://localhost:3000/auth/salesforce/callback_.
+-- Note that you will need to use an HTTPS callback URL if you deploy the app somewhere other than your local machine.
 - Copy the Consumer Key and Consumer Secret from Salesforce into the _salesforce_ _key:_ and _secret:_ fields in _settings.yml_.
 
 ### Start the App
@@ -100,7 +101,7 @@ Browse to <http://localhost:3000/> to start playing.
 FAQ
 ---
 #### Why does your _________ (code/architecture/approach/ux/ui/hairdo) suck so much?
-This is just sample code for a Dreamforce session, not a production app. Sorry to disappoint. If you have improvements, feel free to create a pull request and I'll review it.
+This project exists to share the sample code I presented in a Dreamforce session. It's not a production-quality app. If you have improvements, feel free to create a pull request and I'll review it.
 
 #### Why does the app suck hard in ________ (Firefox/IE/Opera)?
 I only had time to test on Chrome. See above.
@@ -113,12 +114,12 @@ I primarily use a Mac. If you want to write instructions for another OS, I'll ad
 
 #### Why do you only load 500 contacts at most?
 Because Heroku limits requests to 30 seconds, the app is hosted on Heroku, and a lot of social APIs are slow. 
-An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy.
+An alternative is to load more contacts incrementally, per user web request, but I ran out of time/energy. The easiest solution is to import contacts asynchronously. See below.
 
 #### Why didn't you use _________ (resque/sidekiq/other async gem) to import the social contacts in the background?
-Because Heroku workers cost money, and I'm cheap.
+Because Heroku workers cost money and I'm a poor, starving startup founder. The worker classes are actually written to use Sidekiq, so if you are feeling wealthy or want to run async workers locally, you can do so.
 
 #### Why do you have a separate table for authentications instead of denormalizing to place them in the User table?
-Originally I'd thought the game would merge all of the providers into one big game database per user. So a single user record would contain up to 4 authentications, one per provider. 
+Originally I thought the game would merge all of the providers into one big game database per user. So a single user record would contain up to 4 authentications, one per provider. 
 But the data quality (images, names) varies so much between provider that it turns out to be a better idea to keep them separate,
-for the sake of good gameplay.
+for the sake of good gameplay. Also, the game is plenty hard enough without the added dimension of varied providers.
