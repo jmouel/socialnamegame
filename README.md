@@ -93,6 +93,12 @@ secret between the provider and your server) and configure socialnamegame to use
 -- Note that you will need to use an HTTPS callback URL if you deploy the app somewhere other than your local machine.
 - Copy the Consumer Key and Consumer Secret from Salesforce into the _salesforce_ _key:_ and _secret:_ fields in _settings.yml_.
 
+#### SSL
+The code in Github is identical to what is deployed to Heroku on www.socialnamegame.com. SSL is required in that environment, so http requests are redirected automatically.
+In your local environment, you can disable the redirect by modifying the ApplicationController and commenting out this line:
+
+``before_filter :redirect_https``
+
 ### Start the App
 ``rails server``
 
